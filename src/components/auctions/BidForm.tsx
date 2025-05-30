@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DollarSign } from 'lucide-react';
 import { Auction } from '../../types';
 import Button from '../ui/Button';
-import { placeBid } from '../../services/api';
+import { auctionService } from '../../services/api';
 
 interface BidFormProps {
   auction: Auction;
@@ -40,7 +40,7 @@ const BidForm: React.FC<BidFormProps> = ({ auction, onBidPlaced }) => {
     setIsSubmitting(true);
     
     try {
-      const response = await placeBid(auction.id, bidAmount);
+      const response = await auctionService.placeBid(auction.id, bidAmount);
       
       if (response.success) {
         setShowSuccess(true);

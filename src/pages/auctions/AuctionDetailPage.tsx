@@ -5,7 +5,7 @@ import { Clock, Tag, User, DollarSign, Eye, Share2, Heart, ArrowLeft, ChevronRig
 import Layout from '../../components/layout/Layout';
 import BidForm from '../../components/auctions/BidForm';
 import Button from '../../components/ui/Button';
-import { getAuctionById } from '../../services/api';
+import { auctionService } from '../../services/api';
 import { Auction as AuctionType } from '../../types';
 import { useAuth } from '../../context/AuthContext';
 import AuthProtected from '../../components/auth/AuthProtected';
@@ -21,7 +21,7 @@ const AuctionDetailPage: React.FC = () => {
     const fetchAuction = async () => {
       try {
         if (!id) return;
-        const response = await getAuctionById(id);
+        const response = await auctionService.getAuctionById(id);
         if (response.data) {
           setAuction(response.data);
         } else {
